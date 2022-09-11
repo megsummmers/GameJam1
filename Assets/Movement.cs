@@ -60,5 +60,10 @@ public class Movement : MonoBehaviour
           place_num = Random.Range(1, 7);
         }
       }
+      if(collision.gameObject.tag == "food"){
+        Debug.Log("yum!");
+        //hide the food item
+        collision.gameObject.SetActive(false);
+      }
     }
 }
