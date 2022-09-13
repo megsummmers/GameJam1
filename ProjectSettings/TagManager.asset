@@ -6,6 +6,7 @@ TagManager:
   tags:
   - place
   - food
+  - obstacle
   layers:
   - Default
   - TransparentFX
