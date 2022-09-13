@@ -44,3 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: background
+    uniqueID: 3381662317
+    locked: 0
+  - name: places
+    uniqueID: 3934831933
+    locked: 0
+  - name: collectibles
+    uniqueID: 1311977651
+    locked: 0
+  - name: sensors
+    uniqueID: 1833629843
+    locked: 0
+  - name: player
+    uniqueID: 1494201693
+    locked: 0

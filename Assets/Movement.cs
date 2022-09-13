@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
   public GameObject printer;
   public GameObject bathroom;
   public GameObject random;
-  private float speed = 1.5f;
+  private float speed = 1.2f;
   private float place_num;
 
     // Start is called before the first frame update
