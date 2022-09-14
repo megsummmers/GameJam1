@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
   public GameObject printer;
   public GameObject bathroom;
   public GameObject random;
-  public TextMeshProUGUI clock;
+  public TMP_Text clock;
   public GameObject gameOverTxt;
   private float speed = 1.2f;
   private float place_num;
