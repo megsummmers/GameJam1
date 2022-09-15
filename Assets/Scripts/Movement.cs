@@ -12,17 +12,28 @@ public class Movement : MonoBehaviour
   public GameObject bathroom;
   public GameObject random;
   public TMP_Text clock;
-  public GameObject gameOverTxt;
+  public TMP_Text endTxt;
+  public TMP_Text scoreTxt;
+  private TextMeshProUGUI setClock;
+  private TextMeshProUGUI setEndTxt;
+  private TextMeshProUGUI setScoreTxt;
   private float speed = 1.2f;
   private float place_num;
   private float timeLeft = 30;
+  private float score = 0;
   private bool gameOn = true;
 
     // Start is called before the first frame update
     void Start()
     {
       place_num = Random.Range(1, 3);
-      Debug.Log(place_num);
+      //set stuff to textMeshProUGUI
+      setClock = clock.GetComponent<TextMeshProUGUI>();
+      setEndTxt = endTxt.GetComponent<TextMeshProUGUI>();
+      setScoreTxt = scoreTxt.GetComponent<TextMeshProUGUI>();
+      //hide end text
+      setEndTxt.enabled = false;
+      setScoreTxt.enabled = false;
     }
 
     // Update is called once per frame
@@ -31,8 +42,9 @@ public class Movement : MonoBehaviour
       //subtracts one every second
       timeLeft -= Time.deltaTime;
       //change clock text
-      clock.SetText($"{timeLeft}");
-      if ( timeLeft < 0 ){
+      int time = Mathf.FloorToInt(timeLeft);
+      setClock.text = time.ToString();
+      if (timeLeft < 0 ){
         GameOver();
       }
       //get mouse Position
@@ -78,12 +90,21 @@ public class Movement : MonoBehaviour
         Debug.Log("yum!");
         //hide the food item
         collision.gameObject.SetActive(false);
+        score += 1;
       }
     }
 
     public void GameOver(){
+      //stop player movement
       gameOn = false;
+      //return player to middle
       transform.position = new Vector3(0, 0, 0);
-
+      //set score
+      setScoreTxt.text = "You got: " + score.ToString();
+      //turn off clock
+      setClock.enabled = false;
+      //turn on end text
+      setEndTxt.enabled = true;
+      setScoreTxt.enabled = true;
     }
 }
