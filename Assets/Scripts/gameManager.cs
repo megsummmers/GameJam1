@@ -104,6 +104,7 @@ public class gameManager : MonoBehaviour
         Debug.Log("yum!");
         //hide the food item
         collision.gameObject.SetActive(false);
+            playerScore++;
       }
     }
 
