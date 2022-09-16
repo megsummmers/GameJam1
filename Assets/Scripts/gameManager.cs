@@ -15,9 +15,10 @@ public class gameManager : MonoBehaviour
     public GameObject random;
 
    
-    private float speed = 1.2f;
+    private float speed = 3.0f;
     private float place_num;
-    private int timeLeft = 30;
+    private float timeLeft = 30.0f;
+    private int displayTime = 30;
     private bool gameOn = true;
 
     // levels
@@ -34,12 +35,14 @@ public class gameManager : MonoBehaviour
     public GameObject[] coworkersList;
 
     // UI elements
-    public Button menuStart;
-    public Button menuQuit;
-    public TMP_Text gameOverText;
     public TMP_Text clock;
-    public Button endQuit;
+    public TMP_Text textScore;
 
+    // sounds
+     public AudioSource soundBounce;
+     public AudioSource soundEat;
+     public AudioSource soundMove;
+     public AudioSource soundObstacle;
 
     // Start is called before the first frame update
     void Start()
@@ -53,10 +56,11 @@ public class gameManager : MonoBehaviour
     {
       if(gameOn){
         //subtracts one every second
-        timeLeft -= Mathf.RoundToInt(Time.deltaTime);
-            Debug.Log($"{timeLeft}");
-            //change clock text
-            clock.SetText($"{timeLeft}");
+        timeLeft -= Time.deltaTime;
+        displayTime = Mathf.RoundToInt(timeLeft);
+        //change clock text
+        clock.text = "Time Left: " + displayTime;
+        textScore.text = "Score: " + playerScore;
         if (timeLeft < 0)
         {
             GameOver();
@@ -95,6 +99,7 @@ public class gameManager : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision){
       float currentNum = place_num;
       if(collision.gameObject.tag == "place"){
+        soundBounce.Play();
         place_num = Random.Range(1, 7);
         while(place_num == currentNum){
           place_num = Random.Range(1, 7);
@@ -104,7 +109,8 @@ public class gameManager : MonoBehaviour
         Debug.Log("yum!");
         //hide the food item
         collision.gameObject.SetActive(false);
-            playerScore++;
+        soundEat.Play();
+        playerScore++;
       }
     }
 
@@ -112,6 +118,7 @@ public class gameManager : MonoBehaviour
     public void GameOver(){
       gameOn = false;
       transform.position = new Vector3(0, 0, 0);
+      SceneManager.LoadSceneAsync("Scenes/end", LoadSceneMode.Single);
 
     }
 

@@ -10,6 +10,7 @@ public class soundManager : MonoBehaviour
     static public AudioSource soundObstacle;
     static public AudioSource soundButtonClick;
     static public AudioSource soundButtonHover;
+    static public AudioSource soundButtonSuction;
 
     static public void playSoundBounce()
     {
@@ -34,5 +35,9 @@ public class soundManager : MonoBehaviour
     static public void playSoundButtonHover()
     {
         soundButtonHover.Play();
+    }
+    static public void playSoundSuction()
+    {
+        soundButtonSuction.Play();
     }
 }

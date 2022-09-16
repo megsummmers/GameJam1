@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class MenuScreen : MonoBehaviour
 {
     public Button playButton;
+    public AudioSource soundButtonHover;
+    public AudioSource soundButtonClick;
 
     // Start is called before the first frame update
     void Start()
@@ -15,12 +17,19 @@ public class MenuScreen : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
     }
     public void playGame()
     {
+        soundButtonClick.Play();
         SceneManager.LoadSceneAsync("Scenes/HungryHustler", LoadSceneMode.Single);
+    }
+
+    public void hoverButton()
+    {
+        soundButtonHover.Play();
+        Debug.Log("hover");
     }
 }

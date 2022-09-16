@@ -16,7 +16,7 @@ public class endScreen : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        endingText.text = "You Got: " + gameManager.playerScore + " Points!";
+        endingText.text = "You Got: " + gameManager.playerScore + " Point(s)!";
     }
 
     public void end()

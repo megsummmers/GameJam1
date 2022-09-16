@@ -9,6 +9,9 @@ public class FollowPlayer : MonoBehaviour
   public GameObject Donut;
   public GameObject Energydrink;
   public GameObject Soda;
+
+  public AudioSource soundSuction;
+
   private bool magnet = false;
   private string food_active;
     // Start is called before the first frame update
@@ -27,7 +30,7 @@ public class FollowPlayer : MonoBehaviour
       transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
 
       if(Input.GetKey("space")){//move food
-        Debug.Log("yep");
+        // soundSuction.Play();
         switch(food_active)
         {
           case "Chocolate": //desk
@@ -53,6 +56,7 @@ public class FollowPlayer : MonoBehaviour
     }
 
     public void OnTriggerExit2D(Collider2D collision){
+      Debug.Log("no more");
       magnet = false;
       food_active = "";
     }
