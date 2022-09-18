@@ -37,6 +37,8 @@ public class gameManager : MonoBehaviour
     // UI elements
     public TMP_Text clock;
     public TMP_Text textScore;
+    public Canvas canvasPlayer;
+    public GameObject spritePlayer;
 
     // sounds
      public AudioSource soundBounce;
@@ -69,7 +71,7 @@ public class gameManager : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         Vector3 mouse = Camera.main.ScreenToWorldPoint(mousePos);
         //Rotates the player to face the mouse
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
+         spritePlayer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
         //consults random number to see where the player is moving too
         switch(place_num)
         {
@@ -92,7 +94,10 @@ public class gameManager : MonoBehaviour
           transform.position = Vector2.MoveTowards(transform.position, random.transform.position, speed * Time.deltaTime);
           break;
         }
-      }
+            // do not move slider relatively from its parent position
+            canvasPlayer.transform.position = new Vector3(spritePlayer.transform.position.x, spritePlayer.transform.position.y + 0.7f, -1);
+            canvasPlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     // player collision

@@ -7,13 +7,10 @@ public class food : MonoBehaviour
 {
 
     public float hungerRestored = 0.5f;
-    public AudioClip eat;
-
-    private AudioSource source;
 
     void Awake()
     {
-        source = GetComponent<AudioSource>();
+
     }
 
     // Start is called before the first frame update
@@ -42,7 +39,6 @@ public class food : MonoBehaviour
     }
     public void RemoveFood()
     {
-        AudioSource.PlayClipAtPoint(eat, gameObject.transform.position, 0.5f);
         Destroy(this.gameObject);
     }
 }
