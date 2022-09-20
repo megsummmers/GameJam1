@@ -25,8 +25,11 @@ public class gameManager : MonoBehaviour
     public static int currentLevel = 1;
 
     // player stats
-    public static int playerHunger = 100;
+    public static float playerHunger = 10.0f;
+    public static float playerHungerLimit = 10.0f;
     public static int playerScore = 0;
+
+    public static float foodWorth = 4.0f;
 
     // arrays of game objects
     public GameObject[] foodList;
@@ -39,6 +42,7 @@ public class gameManager : MonoBehaviour
     public TMP_Text textScore;
     public Canvas canvasPlayer;
     public GameObject spritePlayer;
+    public Slider sliderHunger;
 
     // sounds
      public AudioSource soundBounce;
@@ -51,6 +55,10 @@ public class gameManager : MonoBehaviour
     {
       place_num = Random.Range(1, 3);
       Debug.Log(place_num);
+      sliderHunger.value = playerHunger;
+      playerHunger = playerHungerLimit;
+      sliderHunger.maxValue = playerHungerLimit;
+
     }
 
     // Fixed Update is called once per frame (better to use than Update)
@@ -63,7 +71,14 @@ public class gameManager : MonoBehaviour
         //change clock text
         clock.text = "Time Left: " + displayTime;
         textScore.text = "Score: " + playerScore;
+        // change the hunger value by -5%
+        playerHunger -= Time.deltaTime;
+        sliderHunger.value = playerHunger;
         if (timeLeft < 0)
+        {
+            GameOver();
+        }
+        if (playerHunger <= 0)
         {
             GameOver();
         }
@@ -116,6 +131,7 @@ public class gameManager : MonoBehaviour
         collision.gameObject.SetActive(false);
         soundEat.Play();
         playerScore++;
+        playerHunger += foodWorth;
       }
     }
 
