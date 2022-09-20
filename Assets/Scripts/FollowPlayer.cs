@@ -56,15 +56,7 @@ public class FollowPlayer : MonoBehaviour
     }
 
     public void OnTriggerExit2D(Collider2D collision){
-      Debug.Log("no more");
       magnet = false;
       food_active = "";
     }
-
-    // private void MoveFood(Collider2D foodObj){
-    //   if(active == true){
-    //     foodObj.transform.position = Vector2.MoveTowards(foodObj.transform.position, transform.position, 1.5f * Time.deltaTime);
-    //     Debug.Log("gotcha!");
-    //   }
-    // }
 }

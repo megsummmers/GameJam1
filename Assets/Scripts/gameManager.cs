@@ -13,8 +13,11 @@ public class gameManager : MonoBehaviour
     public GameObject printer;
     public GameObject bathroom;
     public GameObject random;
+    public GameObject desk_2;
+    public GameObject bathroom_2;
+    public GameObject bathroom_3;
+    public GameObject random_2;
 
-   
     private float speed = 3.0f;
     private float place_num;
     private float timeLeft = 30.0f;
@@ -25,11 +28,8 @@ public class gameManager : MonoBehaviour
     public static int currentLevel = 1;
 
     // player stats
-    public static float playerHunger = 10.0f;
-    public static float playerHungerLimit = 10.0f;
+    public static int playerHunger = 100;
     public static int playerScore = 0;
-
-    public static float foodWorth = 4.0f;
 
     // arrays of game objects
     public GameObject[] foodList;
@@ -40,9 +40,6 @@ public class gameManager : MonoBehaviour
     // UI elements
     public TMP_Text clock;
     public TMP_Text textScore;
-    public Canvas canvasPlayer;
-    public GameObject spritePlayer;
-    public Slider sliderHunger;
 
     // sounds
      public AudioSource soundBounce;
@@ -54,11 +51,6 @@ public class gameManager : MonoBehaviour
     void Start()
     {
       place_num = Random.Range(1, 3);
-      Debug.Log(place_num);
-      sliderHunger.value = playerHunger;
-      playerHunger = playerHungerLimit;
-      sliderHunger.maxValue = playerHungerLimit;
-
     }
 
     // Fixed Update is called once per frame (better to use than Update)
@@ -71,14 +63,7 @@ public class gameManager : MonoBehaviour
         //change clock text
         clock.text = "Time Left: " + displayTime;
         textScore.text = "Score: " + playerScore;
-        // change the hunger value by -5%
-        playerHunger -= Time.deltaTime;
-        sliderHunger.value = playerHunger;
         if (timeLeft < 0)
-        {
-            GameOver();
-        }
-        if (playerHunger <= 0)
         {
             GameOver();
         }
@@ -86,7 +71,7 @@ public class gameManager : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         Vector3 mouse = Camera.main.ScreenToWorldPoint(mousePos);
         //Rotates the player to face the mouse
-         spritePlayer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
         //consults random number to see where the player is moving too
         switch(place_num)
         {
@@ -109,30 +94,41 @@ public class gameManager : MonoBehaviour
           transform.position = Vector2.MoveTowards(transform.position, random.transform.position, speed * Time.deltaTime);
           break;
         }
-            // do not move slider relatively from its parent position
-            canvasPlayer.transform.position = new Vector3(spritePlayer.transform.position.x, spritePlayer.transform.position.y + 0.7f, -1);
-            canvasPlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+      }
     }
 
     // player collision
     public void OnTriggerEnter2D(Collider2D collision){
-      float currentNum = place_num;
       if(collision.gameObject.tag == "place"){
-        soundBounce.Play();
+        Debug.Log("here");
+        StartCoroutine(SwitchCoroutine());
+        // float currentNum = place_num;
+        // place_num = Random.Range(1, 7);
+        // while(place_num == currentNum){
+        //   place_num = Random.Range(1, 7);
+        // }
+      }
+      if(collision.gameObject.tag == "food"){
+        //hide the food item
+        collision.gameObject.SetActive(false);
+        playerScore += 1;
+      }
+    }
+
+    IEnumerator SwitchCoroutine()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine");
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(2);
+
+        //After we have waited 5 seconds print the time again.
+        float currentNum = place_num;
         place_num = Random.Range(1, 7);
         while(place_num == currentNum){
           place_num = Random.Range(1, 7);
         }
-      }
-      if(collision.gameObject.tag == "food"){
-        Debug.Log("yum!");
-        //hide the food item
-        collision.gameObject.SetActive(false);
-        soundEat.Play();
-        playerScore++;
-        playerHunger += foodWorth;
-      }
     }
 
     // end the game

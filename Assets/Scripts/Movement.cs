@@ -85,6 +85,13 @@ public class Movement : MonoBehaviour
         while(place_num == currentNum){
           place_num = Random.Range(1, 7);
         }
+        Debug.Log("here");
+        StartCoroutine(SwitchCoroutine());
+        // float currentNum = place_num;
+        // place_num = Random.Range(1, 7);
+        // while(place_num == currentNum){
+        //   place_num = Random.Range(1, 7);
+        // }
       }
       if(collision.gameObject.tag == "food"){
         Debug.Log("yum!");
@@ -94,17 +101,24 @@ public class Movement : MonoBehaviour
       }
     }
 
+    IEnumerator SwitchCoroutine()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine");
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+
+        //After we have waited 5 seconds print the time again.
+        float currentNum = place_num;
+        place_num = Random.Range(1, 7);
+        while(place_num == currentNum){
+          place_num = Random.Range(1, 7);
+        }
+    }
+
     public void GameOver(){
       //stop player movement
       gameOn = false;
-      //return player to middle
-      transform.position = new Vector3(0, 0, 0);
-      //set score
-      setScoreTxt.text = "You got: " + score.ToString();
-      //turn off clock
-      setClock.enabled = false;
-      //turn on end text
-      setEndTxt.enabled = true;
-      setScoreTxt.enabled = true;
     }
-}
+  }
