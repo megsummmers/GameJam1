@@ -11,12 +11,12 @@ public class gameManager : MonoBehaviour
     public GameObject boss;
     public GameObject water;
     public GameObject printer;
-    public GameObject bathroom;
-    public GameObject random;
+    public GameObject reception;
+    public GameObject plant;
+    public GameObject couch;
     public GameObject desk_2;
-    public GameObject bathroom_2;
-    public GameObject bathroom_3;
-    public GameObject random_2;
+    public GameObject reception_2;
+    public GameObject couch_2;
 
     private float speed = 3.0f;
     private float place_num;
@@ -28,11 +28,11 @@ public class gameManager : MonoBehaviour
     public static int currentLevel = 1;
 
     // player stats
-    public static int playerScore = 0;
     public static float playerHunger = 10.0f;
     public static float playerHungerLimit = 10.0f;
+    public static int playerScore = 0;
 
-    public static float foodSpawnTimer = 6.0f;
+public static float foodSpawnTimer = 6.0f;
     public static float foodSpawnFrequency = 6.0f;
 
     public static float foodWorth = 4.0f;
@@ -51,7 +51,7 @@ public class gameManager : MonoBehaviour
     public Slider sliderHunger;
 
     // sounds
-    public AudioSource soundBounce;
+     public AudioSource soundBounce;
      public AudioSource soundEat;
      public AudioSource soundMove;
      public AudioSource soundObstacle;
@@ -59,10 +59,10 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      place_num = Random.Range(1, 3);
-        sliderHunger.value = playerHunger;
-        playerHunger = playerHungerLimit;
-        sliderHunger.maxValue = playerHungerLimit;
+      place_num = Random.Range(1, 8);
+      sliderHunger.value = playerHunger;
+      playerHunger = playerHungerLimit;
+      sliderHunger.maxValue = playerHungerLimit;
     }
 
     // Fixed Update is called once per frame (better to use than Update)
@@ -91,9 +91,9 @@ public class gameManager : MonoBehaviour
         Vector3 mouse = Camera.main.ScreenToWorldPoint(mousePos);
         //Rotates the player to face the mouse
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
-        spritePlayer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
+	spritePlayer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
         //consults random number to see where the player is moving too
-        switch (place_num)
+        switch(place_num)
         {
           case 1: //desk
           transform.position = Vector2.MoveTowards(transform.position, desk.transform.position, speed * Time.deltaTime);
@@ -107,23 +107,23 @@ public class gameManager : MonoBehaviour
           case 4: //printer
           transform.position = Vector2.MoveTowards(transform.position, printer.transform.position, speed * Time.deltaTime);
           break;
-          case 5: //bathroom
-          transform.position = Vector2.MoveTowards(transform.position, bathroom.transform.position, speed * Time.deltaTime);
+          case 5: //reception
+          transform.position = Vector2.MoveTowards(transform.position, reception.transform.position, speed * Time.deltaTime);
           break;
           case 6: //random place
-          transform.position = Vector2.MoveTowards(transform.position, random.transform.position, speed * Time.deltaTime);
+          transform.position = Vector2.MoveTowards(transform.position, couch.transform.position, speed * Time.deltaTime);
+          break;
+          case 7: //random place
+          transform.position = Vector2.MoveTowards(transform.position, plant.transform.position, speed * Time.deltaTime);
           break;
         }
-        // do not move slider relatively from its parent position
-        canvasPlayer.transform.position = new Vector3(spritePlayer.transform.position.x, spritePlayer.transform.position.y + 0.7f, -1);
-        canvasPlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+      }
     }
 
     // player collision
     public void OnTriggerEnter2D(Collider2D collision){
       if(collision.gameObject.tag == "place"){
-        Debug.Log("here");
+        soundBounce.Play();
         StartCoroutine(SwitchCoroutine());
         // float currentNum = place_num;
         // place_num = Random.Range(1, 7);
@@ -135,7 +135,7 @@ public class gameManager : MonoBehaviour
         //hide the food item
         collision.gameObject.SetActive(false);
         soundEat.Play();
-        playerScore += 1;
+        playerScore++;
         playerHunger += foodWorth;
       }
     }
@@ -150,11 +150,10 @@ public class gameManager : MonoBehaviour
 
         //After we have waited 5 seconds print the time again.
         float currentNum = place_num;
-        place_num = Random.Range(1, 7);
+        place_num = Random.Range(1, 8);
         while(place_num == currentNum){
-          place_num = Random.Range(1, 7);
+          place_num = Random.Range(1, 8);
         }
-        soundBounce.Play();
     }
 
     // end the game
