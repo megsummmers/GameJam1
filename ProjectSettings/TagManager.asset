@@ -7,6 +7,8 @@ TagManager:
   - place
   - food
   - obstacle
+  - Horizontal
+  - Vertical
   layers:
   - Default
   - TransparentFX
@@ -47,8 +49,14 @@ TagManager:
   - name: background
     uniqueID: 3381662317
     locked: 0
+  - name: npcs
+    uniqueID: 1099709889
+    locked: 0
   - name: places
     uniqueID: 3934831933
+    locked: 0
+  - name: obstacles
+    uniqueID: 1756498213
     locked: 0
   - name: collectibles
     uniqueID: 1311977651
