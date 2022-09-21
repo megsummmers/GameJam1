@@ -91,7 +91,10 @@ public static float foodSpawnTimer = 6.0f;
         Vector3 mouse = Camera.main.ScreenToWorldPoint(mousePos);
         //Rotates the player to face the mouse
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
-	spritePlayer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
+	      spritePlayer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
+        //hunger bar
+        canvasPlayer.transform.position = new Vector3(spritePlayer.transform.position.x, spritePlayer.transform.position.y + 0.7f, -1);
+        canvasPlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
         //consults random number to see where the player is moving too
         switch(place_num)
         {
