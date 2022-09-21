@@ -7,10 +7,13 @@ public class food : MonoBehaviour
 {
 
     public float hungerRestored = 0.5f;
+    public float direction = 0;
+    public Sprite spriteFood;
+
 
     void Awake()
     {
-
+        // set the sprite based on the random choice
     }
 
     // Start is called before the first frame update
@@ -22,16 +25,12 @@ public class food : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // if it rotated too much, destroy it
-        if (this.transform.rotation.x >= 60 || this.transform.rotation.y >= 60 || this.transform.rotation.z >= 60)
-        {
-            Debug.Log("rotate");
-            RemoveFood();
-        }
+        // if touch walls, bounce
+
     }
     private void OnCollisionEnter(Collision collision)
     {
-        // if touch borders destroy it
+        // if touch player destroy it
         if (collision.gameObject.tag == "player")
         {
             RemoveFood();
