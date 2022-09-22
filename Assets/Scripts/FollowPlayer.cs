@@ -23,27 +23,33 @@ public class FollowPlayer : MonoBehaviour
       Vector3 playerObj = player.transform.position;
       //move circle to player Position
       transform.position = new Vector3(playerObj.x, playerObj.y, playerObj.z);
-      //get mouse Position
-      Vector3 mousePos = Input.mousePosition;
-      Vector3 mouse = Camera.main.ScreenToWorldPoint(mousePos);
-      //Rotates the player to face the mouse
-      transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
+        //get mouse Position
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(mousePos);
+        //Rotates the player to face the mouse
+        // code from https://www.youtube.com/watch?v=mKLp-2iseDc
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
 
-      if(Input.GetKey("space")){//move food
+        //Vector2 direction = Camera.main.ViewportToScreenPoint(Input.mousePosition) - transform.position;
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10.0f);
+
+        if (Input.GetKey("space")){//move food
         // soundSuction.Play();
         switch(food_active)
         {
           case "Chocolate": //desk
-          Chocolate.transform.position = Vector2.MoveTowards(Chocolate.transform.position, player.transform.position, 1.5f * Time.deltaTime);
+          Chocolate.transform.position = Vector2.MoveTowards(Chocolate.transform.position, player.transform.position, 2.5f * Time.deltaTime);
           break;
           case "Donut": //boss
-          Donut.transform.position = Vector2.MoveTowards(Donut.transform.position, player.transform.position, 1.5f * Time.deltaTime);
+          Donut.transform.position = Vector2.MoveTowards(Donut.transform.position, player.transform.position, 2.5f * Time.deltaTime);
           break;
           case "Energydrink": //water
-          Energydrink.transform.position = Vector2.MoveTowards(Energydrink.transform.position, player.transform.position, 1.5f * Time.deltaTime);
+          Energydrink.transform.position = Vector2.MoveTowards(Energydrink.transform.position, player.transform.position, 2.5f * Time.deltaTime);
           break;
           case "Soda": //printer
-          Soda.transform.position = Vector2.MoveTowards(Soda.transform.position, player.transform.position, 1.5f * Time.deltaTime);
+          Soda.transform.position = Vector2.MoveTowards(Soda.transform.position, player.transform.position, 2.5f * Time.deltaTime);
           break;
         }
       }

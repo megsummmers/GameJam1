@@ -18,7 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject reception_2;
     public GameObject couch_2;
 
-    private float speed = 3.0f;
+    private float speed = 4.0f;
     private float place_num;
     private float timeLeft = 30.0f;
     private int displayTime = 30;
@@ -32,7 +32,7 @@ public class gameManager : MonoBehaviour
     public static float playerHungerLimit = 10.0f;
     public static int playerScore = 0;
 
-public static float foodSpawnTimer = 6.0f;
+    public static float foodSpawnTimer = 6.0f;
     public static float foodSpawnFrequency = 6.0f;
 
     public static float foodWorth = 4.0f;
@@ -50,6 +50,12 @@ public static float foodSpawnTimer = 6.0f;
     public GameObject spritePlayer;
     public Slider sliderHunger;
 
+    // the borders of the screen
+    public float screenLeft;
+    public float screenRight;
+    public float screenTop;
+    public float screenBottom;
+
     // sounds
      public AudioSource soundBounce;
      public AudioSource soundEat;
@@ -63,6 +69,7 @@ public static float foodSpawnTimer = 6.0f;
       sliderHunger.value = playerHunger;
       playerHunger = playerHungerLimit;
       sliderHunger.maxValue = playerHungerLimit;
+        Debug.Log("Screen Height : " + Screen.height);
     }
 
     // Fixed Update is called once per frame (better to use than Update)
@@ -140,6 +147,9 @@ public static float foodSpawnTimer = 6.0f;
         soundEat.Play();
         playerScore++;
         playerHunger += foodWorth;
+        if(playerHunger > playerHungerLimit){
+           playerHunger = playerHungerLimit;
+        }
       }
     }
 
