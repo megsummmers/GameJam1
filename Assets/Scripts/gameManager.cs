@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject desk_2;
     public GameObject reception_2;
     public GameObject couch_2;
+    public GameObject foodSpawnArea;
 
     private float speed = 4.0f;
     private float place_num;
