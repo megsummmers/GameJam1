@@ -30,11 +30,6 @@ public class FollowPlayer : MonoBehaviour
         // code from https://www.youtube.com/watch?v=mKLp-2iseDc
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
 
-        //Vector2 direction = Camera.main.ViewportToScreenPoint(Input.mousePosition) - transform.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10.0f);
-
         if (Input.GetKey("space")){//move food
         // soundSuction.Play();
         switch(food_active)

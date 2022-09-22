@@ -12,14 +12,13 @@ public class gameManager : MonoBehaviour
     public GameObject water;
     public GameObject printer;
     public GameObject reception;
-    public GameObject plant;
     public GameObject couch;
     public GameObject desk_2;
     public GameObject reception_2;
     public GameObject couch_2;
     public GameObject foodSpawnArea;
 
-    private float speed = 4.0f;
+    private float speed = 3.0f;
     private float place_num;
     private float timeLeft = 30.0f;
     private int displayTime = 30;
@@ -29,7 +28,7 @@ public class gameManager : MonoBehaviour
     public static int currentLevel = 1;
 
     // player stats
-    public static float playerHunger = 10.0f;
+    public static float playerHunger = 15.0f;
     public static float playerHungerLimit = 10.0f;
     public static int playerScore = 0;
 
@@ -124,9 +123,6 @@ public class gameManager : MonoBehaviour
           case 6: //random place
           transform.position = Vector2.MoveTowards(transform.position, couch.transform.position, speed * Time.deltaTime);
           break;
-          case 7: //random place
-          transform.position = Vector2.MoveTowards(transform.position, plant.transform.position, speed * Time.deltaTime);
-          break;
         }
       }
     }
@@ -134,13 +130,7 @@ public class gameManager : MonoBehaviour
     // player collision
     public void OnTriggerEnter2D(Collider2D collision){
       if(collision.gameObject.tag == "place"){
-        soundBounce.Play();
         StartCoroutine(SwitchCoroutine());
-        // float currentNum = place_num;
-        // place_num = Random.Range(1, 7);
-        // while(place_num == currentNum){
-        //   place_num = Random.Range(1, 7);
-        // }
       }
       if(collision.gameObject.tag == "food"){
         //hide the food item
@@ -164,10 +154,11 @@ public class gameManager : MonoBehaviour
 
         //After we have waited 5 seconds print the time again.
         float currentNum = place_num;
-        place_num = Random.Range(1, 8);
+        place_num = Random.Range(1, 7);
         while(place_num == currentNum){
-          place_num = Random.Range(1, 8);
+          place_num = Random.Range(1, 7);
         }
+        soundBounce.Play();
     }
 
     // end the game
