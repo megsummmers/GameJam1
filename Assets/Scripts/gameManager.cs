@@ -132,7 +132,11 @@ public class gameManager : MonoBehaviour
       if(collision.gameObject.tag == "place"){
         StartCoroutine(SwitchCoroutine());
       }
-      if(collision.gameObject.tag == "food"){
+      if (collision.gameObject.tag == "obstacle")
+      {
+        soundObstacle.Play();
+      }
+        if (collision.gameObject.tag == "food"){
         //hide the food item
         collision.gameObject.SetActive(false);
         soundEat.Play();

@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class endScreen : MonoBehaviour
 {
     public Text endingText;
+    public AudioSource soundDefeat;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        soundDefeat.Play();
     }
 
     // Update is called once per frame
