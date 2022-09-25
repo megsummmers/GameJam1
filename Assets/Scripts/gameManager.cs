@@ -46,6 +46,7 @@ public class gameManager : MonoBehaviour
     // UI elements
     public TMP_Text clock;
     public TMP_Text textScore;
+    public TMP_Text textLocation;
     public Canvas canvasPlayer;
     public GameObject spritePlayer;
     public Slider sliderHunger;
@@ -107,21 +108,27 @@ public class gameManager : MonoBehaviour
         {
           case 1: //desk
           transform.position = Vector2.MoveTowards(transform.position, desk.transform.position, speed * Time.deltaTime);
+          textLocation.text = "Next Location: Co-workers Desk";
           break;
           case 2: //boss
           transform.position = Vector2.MoveTowards(transform.position, boss.transform.position, speed * Time.deltaTime);
+          textLocation.text = "Next Location: Boss's Desk";
           break;
           case 3: //water
           transform.position = Vector2.MoveTowards(transform.position, water.transform.position, speed * Time.deltaTime);
+          textLocation.text = "Next Location: Water Cooler";
           break;
           case 4: //printer
           transform.position = Vector2.MoveTowards(transform.position, printer.transform.position, speed * Time.deltaTime);
+          textLocation.text = "Next Location: Printer";
           break;
           case 5: //reception
           transform.position = Vector2.MoveTowards(transform.position, reception.transform.position, speed * Time.deltaTime);
+          textLocation.text = "Next Location: Reception";
           break;
           case 6: //random place
           transform.position = Vector2.MoveTowards(transform.position, couch.transform.position, speed * Time.deltaTime);
+          textLocation.text = "Next Location: Couch";
           break;
         }
       }
