@@ -14,6 +14,7 @@ public class FollowPlayer : MonoBehaviour
 
   private bool magnet = false;
   private string food_active;
+  private bool audioPlay = true;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -31,24 +32,26 @@ public class FollowPlayer : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
 
         if (Input.GetKey("space")){//move food
-        // soundSuction.Play();
-        switch(food_active)
-        {
-          case "Chocolate": //desk
-          Chocolate.transform.position = Vector2.MoveTowards(Chocolate.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          break;
-          case "Donut": //boss
-          Donut.transform.position = Vector2.MoveTowards(Donut.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          break;
-          case "Energydrink": //water
-          Energydrink.transform.position = Vector2.MoveTowards(Energydrink.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          break;
-          case "Soda": //printer
-          Soda.transform.position = Vector2.MoveTowards(Soda.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          break;
+          if(audioPlay){
+            StartCoroutine(playSuctionSound());
+          }
+          switch(food_active)
+          {
+            case "Chocolate": //desk
+            Chocolate.transform.position = Vector2.MoveTowards(Chocolate.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+            break;
+            case "Donut": //boss
+            Donut.transform.position = Vector2.MoveTowards(Donut.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+            break;
+            case "Energydrink": //water
+            Energydrink.transform.position = Vector2.MoveTowards(Energydrink.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+            break;
+            case "Soda": //printer
+            Soda.transform.position = Vector2.MoveTowards(Soda.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+            break;
+          }
         }
       }
-    }
 
     public void OnTriggerEnter2D(Collider2D collision){
       //collision.transform.position = Vector2.MoveTowards(collision.transform.position, transform.position, 1.5f * Time.deltaTime);
@@ -59,5 +62,13 @@ public class FollowPlayer : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision){
       magnet = false;
       food_active = "";
+    }
+
+    IEnumerator playSuctionSound()
+    {
+      soundSuction.Play();
+      audioPlay = false;
+      yield return new WaitForSeconds(soundSuction.clip.length);
+      audioPlay = true;
     }
 }
