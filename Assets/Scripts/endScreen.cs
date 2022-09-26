@@ -14,9 +14,7 @@ public class endScreen : MonoBehaviour
     void Start()
     {
       losePanel =  GameObject.Find("Panel_lose");
-      int tempScore = 5;
-      //if(gameManager.playerScore >= 5){
-      if(tempScore >= 5){
+      if(gameManager.playerScore >= 5){
         losePanel.SetActive(false);
         soundVictory.Play();
       } else if (tempScore < 5) {

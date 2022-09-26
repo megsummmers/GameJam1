@@ -13,9 +13,6 @@ public class gameManager : MonoBehaviour
     public GameObject printer;
     public GameObject reception;
     public GameObject couch;
-    public GameObject desk_2;
-    public GameObject reception_2;
-    public GameObject couch_2;
     public GameObject foodSpawnArea;
 
     private float speed = 3.0f;
@@ -108,27 +105,27 @@ public class gameManager : MonoBehaviour
         {
           case 1: //desk
           transform.position = Vector2.MoveTowards(transform.position, desk.transform.position, speed * Time.deltaTime);
-          textLocation.text = "Next Location: Co-workers Desk";
+          textLocation.text = "Next Task:\n\nVisit\nCo-workers";
           break;
           case 2: //boss
           transform.position = Vector2.MoveTowards(transform.position, boss.transform.position, speed * Time.deltaTime);
-          textLocation.text = "Next Location: Boss's Desk";
+          textLocation.text = "Next Task:\n\nTalk to\nBoss";
           break;
           case 3: //water
           transform.position = Vector2.MoveTowards(transform.position, water.transform.position, speed * Time.deltaTime);
-          textLocation.text = "Next Location: Water Cooler";
+          textLocation.text = "Next Task:\n\nWater\nCooler";
           break;
           case 4: //printer
           transform.position = Vector2.MoveTowards(transform.position, printer.transform.position, speed * Time.deltaTime);
-          textLocation.text = "Next Location: Printer";
+          textLocation.text = "Next Task:\n\nPrint\nstuff";
           break;
           case 5: //reception
           transform.position = Vector2.MoveTowards(transform.position, reception.transform.position, speed * Time.deltaTime);
-          textLocation.text = "Next Location: Reception";
+          textLocation.text = "Next Task:\n\nVisit\nReception";
           break;
           case 6: //random place
           transform.position = Vector2.MoveTowards(transform.position, couch.transform.position, speed * Time.deltaTime);
-          textLocation.text = "Next Location: Couch";
+          textLocation.text = "Next Task:\n\nSit on\nCouch";
           break;
         }
       }
