@@ -7,11 +7,21 @@ public class endScreen : MonoBehaviour
 {
     public Text endingText;
     public AudioSource soundDefeat;
+    public AudioSource soundVictory;
+    private GameObject losePanel;
 
     // Start is called before the first frame update
     void Start()
     {
+      losePanel =  GameObject.Find("Panel_lose");
+      int tempScore = 5;
+      //if(gameManager.playerScore >= 5){
+      if(tempScore >= 5){
+        losePanel.SetActive(false);
+        soundVictory.Play();
+      } else if (tempScore < 5) {
         soundDefeat.Play();
+      }
     }
 
     // Update is called once per frame
