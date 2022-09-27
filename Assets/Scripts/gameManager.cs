@@ -59,6 +59,7 @@ public class gameManager : MonoBehaviour
      public AudioSource soundEat;
      public AudioSource soundMove;
      public AudioSource soundObstacle;
+     public AudioSource soundMusic;
 
     // Start is called before the first frame update
     void Start()
