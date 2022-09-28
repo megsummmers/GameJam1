@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb8f19fdf5f4324bb30d5d03f068702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
   speed: 2.5
   spriteFood: {fileID: 0}
+  spriteRenderer: {fileID: 8428703760944344037}
   spriteFoodList:
   - {fileID: 21300000, guid: 3a337f793192348828b789633740877f, type: 3}
   - {fileID: 21300000, guid: 4dd6e74c6aa734f92b59a4d32d53d5c6, type: 3}
@@ -137,6 +137,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1acd2e0453bf94720948b5f2a831f50d, type: 3}
   - {fileID: 21300000, guid: e4cde8c0421a54448a9b6c07431f8c18, type: 3}
   player: {fileID: 0}
+  movementTarget: {fileID: 0}
+  direction: {x: 0, y: 0}
 --- !u!61 &8107523342626329234
 BoxCollider2D:
   m_ObjectHideFlags: 0

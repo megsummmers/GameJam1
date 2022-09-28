@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
     public GameObject reception;
     public GameObject couch;
     public GameObject foodSpawnArea;
+    public Camera mainCamera;
 
     private float speed = 3.0f;
     private float place_num;
@@ -35,6 +36,8 @@ public class gameManager : MonoBehaviour
     public static float foodSpawnFrequency = 6.0f;
 
     public static float foodWorth = 4.0f;
+
+    public static Vector2 screenSize;
 
     // arrays of game objects
     public GameObject[] foodList;
@@ -67,10 +70,11 @@ public class gameManager : MonoBehaviour
     void Start()
     {
       place_num = Random.Range(1, 8);
-        sliderStamina.value = playerStamina;
+      sliderStamina.value = playerStamina;
       playerHunger = playerHungerLimit;
-        sliderStamina.maxValue = playerStaminaLimit;
-        Debug.Log("Screen Height : " + Screen.height);
+      sliderStamina.maxValue = playerStaminaLimit;
+      screenSize = mainCamera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Debug.Log(screenSize);
     }
 
     // Fixed Update is called once per frame (better to use than Update)

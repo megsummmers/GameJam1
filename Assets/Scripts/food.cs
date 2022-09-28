@@ -8,15 +8,21 @@ public class food : MonoBehaviour
 
     public float speed = 2.5f;
     public Sprite spriteFood;
+    public SpriteRenderer spriteRenderer;
     public Sprite[] spriteFoodList;
     public GameObject player;
     public GameObject movementTarget;
+    public Vector2 direction;
 
 
     void Awake()
     {
         // set the sprite based on the random choice
         spriteFood = spriteFoodList[Random.Range(0, spriteFoodList.Length)];
+        Debug.Log(spriteFood);
+        spriteRenderer.sprite = spriteFood;
+        //   direction = new Vector2(Random.Range(-0.04f, 0.04f), Random.Range(-0.04f, 0.04f));
+        direction = new Vector2(Random.Range(-0.04f, 0), Random.Range(0, 0));
     }
 
     // Start is called before the first frame update
@@ -28,8 +34,12 @@ public class food : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate
+        transform.Translate(direction.x * speed, direction.y * speed, 0.0f);
         // if touch walls, bounce
+        if (transform.position.x >= gameManager.screenSize.x)
+        {
+            direction.x *= -1;
+        }
 
     }
     private void OnCollisionEnter(Collision collision)
