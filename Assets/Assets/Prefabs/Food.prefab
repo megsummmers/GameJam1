@@ -41,11 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7164191990256645637}
   - component: {fileID: 8428703760944344037}
-  - component: {fileID: 741624756425790716}
   - component: {fileID: 1230099034309704828}
   - component: {fileID: 8107523342626329234}
   m_Layer: 0
-  m_Name: Chips
+  m_Name: food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,27 +115,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &741624756425790716
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6061624156103857709}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &1230099034309704828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb8f19fdf5f4324bb30d5d03f068702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerRestored: 0.5
+  direction: 0
+  speed: 2.5
+  spriteFood: {fileID: 0}
+  spriteFoodList:
+  - {fileID: 21300000, guid: 3a337f793192348828b789633740877f, type: 3}
+  - {fileID: 21300000, guid: 4dd6e74c6aa734f92b59a4d32d53d5c6, type: 3}
+  - {fileID: 21300000, guid: 3224a188f6ca4479cb210d83d2c03d1f, type: 3}
+  - {fileID: 21300000, guid: 1acd2e0453bf94720948b5f2a831f50d, type: 3}
+  - {fileID: 21300000, guid: e4cde8c0421a54448a9b6c07431f8c18, type: 3}
+  player: {fileID: 0}
 --- !u!61 &8107523342626329234
 BoxCollider2D:
   m_ObjectHideFlags: 0

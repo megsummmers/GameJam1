@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 482461996157389984}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: suction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,6 +80,7 @@ MonoBehaviour:
   Donut: {fileID: 0}
   Energydrink: {fileID: 0}
   Soda: {fileID: 0}
+  foodTouched: []
   soundSuction: {fileID: 0}
 --- !u!50 &482461996157389984
 Rigidbody2D:

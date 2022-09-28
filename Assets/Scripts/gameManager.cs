@@ -17,8 +17,6 @@ public class gameManager : MonoBehaviour
 
     private float speed = 3.0f;
     private float place_num;
-    private float timeLeft = 30.0f;
-    private int displayTime = 30;
     private bool gameOn = true;
 
     // levels
@@ -26,8 +24,12 @@ public class gameManager : MonoBehaviour
 
     // player stats
     public static float playerHunger = 15.0f;
+    public static int playerHungerDisplay;
     public static float playerHungerLimit = 10.0f;
     public static int playerScore = 0;
+    public static float playerStamina = 10.0f;
+    public static float playerStaminaLimit = 10.0f;
+    public static float playerStaminaRestore = 1.0f;
 
     public static float foodSpawnTimer = 6.0f;
     public static float foodSpawnFrequency = 6.0f;
@@ -41,12 +43,12 @@ public class gameManager : MonoBehaviour
     public GameObject[] coworkersList;
 
     // UI elements
-    public TMP_Text clock;
+    public TMP_Text textHunger;
     public TMP_Text textScore;
     public TMP_Text textLocation;
     public Canvas canvasPlayer;
     public GameObject spritePlayer;
-    public Slider sliderHunger;
+    public Slider sliderStamina;
 
     // the borders of the screen
     public float screenLeft;
@@ -65,9 +67,9 @@ public class gameManager : MonoBehaviour
     void Start()
     {
       place_num = Random.Range(1, 8);
-      sliderHunger.value = playerHunger;
+        sliderStamina.value = playerStamina;
       playerHunger = playerHungerLimit;
-      sliderHunger.maxValue = playerHungerLimit;
+        sliderStamina.maxValue = playerStaminaLimit;
         Debug.Log("Screen Height : " + Screen.height);
     }
 
@@ -76,18 +78,22 @@ public class gameManager : MonoBehaviour
     {
       if(gameOn){
         //subtracts one every second
-        timeLeft -= Time.deltaTime;
-        displayTime = Mathf.RoundToInt(timeLeft);
-        //change clock text
-        clock.text = "Time Left: " + displayTime;
-        textScore.text = "Score: " + playerScore;
-        // change the hunger value by -5%
         playerHunger -= Time.deltaTime;
-        sliderHunger.value = playerHunger;
-        if (timeLeft < 0)
+        playerHungerDisplay = Mathf.RoundToInt(playerHunger);
+        //change hunger text
+        textHunger.text = "Hunger: " + playerHungerDisplay;
+        textScore.text = "Score: " + playerScore;
+        // if the stamina is not full, restore stamina
+        if (playerStamina < playerStaminaLimit)
         {
-            GameOver();
+           playerStamina += (playerStaminaRestore / 10);
         }
+        if (playerStamina == 0)
+        {
+            FollowPlayer.audioPlay = false;
+            FollowPlayer.magnet = false;
+        }
+        sliderStamina.value = playerStamina;
         if (playerHunger <= 0)
         {
             GameOver();

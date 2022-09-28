@@ -9,12 +9,13 @@ public class FollowPlayer : MonoBehaviour
   public GameObject Donut;
   public GameObject Energydrink;
   public GameObject Soda;
+  public GameObject[] foodTouched;
 
   public AudioSource soundSuction;
 
-  private bool magnet = false;
+  static public bool magnet = false;
   private string food_active;
-  private bool audioPlay = true;
+  static public bool audioPlay = true;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -30,8 +31,9 @@ public class FollowPlayer : MonoBehaviour
         //Rotates the player to face the mouse
         // code from https://www.youtube.com/watch?v=mKLp-2iseDc
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y, mouse.x) * Mathf.Rad2Deg - 90);
-
-        if (Input.GetKey("space")){//move food
+        // if suck and has stamina, then any food in the area gets sucked towards the player
+        if (Input.GetKey("space") && gameManager.playerStamina > 0){//move food
+          gameManager.playerStamina -= Time.deltaTime * 20.0f;
           if(audioPlay){
             StartCoroutine(playSuctionSound());
           }
