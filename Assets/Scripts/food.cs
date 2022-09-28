@@ -13,7 +13,7 @@ public class food : MonoBehaviour
     public GameObject player;
     public GameObject movementTarget;
     public Vector2 direction;
-    private bool suckedIn = false;
+    public bool suckedIn = true;
 
 
     void Awake()
