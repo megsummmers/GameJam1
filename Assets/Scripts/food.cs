@@ -13,6 +13,7 @@ public class food : MonoBehaviour
     public GameObject player;
     public GameObject movementTarget;
     public Vector2 direction;
+    private bool suckedIn = false;
 
 
     void Awake()
@@ -33,7 +34,13 @@ public class food : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(direction.x * speed, direction.y * speed, 0.0f);
+        if (suckedIn == false) 
+        {
+          transform.Translate(direction.x * speed, direction.y * speed, 0.0f);
+        } else if (suckedIn == true) 
+        {
+          this.transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+        }
         // if touch walls, bounce
         if (transform.position.x >= 8.5f)
         {
@@ -62,7 +69,7 @@ public class food : MonoBehaviour
         }
         if (collision.gameObject.tag == "suction" && FollowPlayer.magnet == true)
         {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            suckedIn = true;
             Debug.Log("suck");
         }
     }

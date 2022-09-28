@@ -71,7 +71,7 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      place_num = Random.Range(1, 8);
+      place_num = Random.Range(1, 6);
       sliderStamina.value = playerStamina;
       playerHunger = playerHungerLimit;
       sliderStamina.maxValue = playerStaminaLimit;
