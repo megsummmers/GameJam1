@@ -37,17 +37,19 @@ public class FollowPlayer : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision){
       //collision.transform.position = Vector2.MoveTowards(collision.transform.position, transform.position, 1.5f * Time.deltaTime);
-      if (collision.gameObject.tag == "food") 
+      if (collision.gameObject.tag == "food")
       {
-        collision.gameObject.food.suckedIn = true;
+        bool foodScript = collision.gameObject.GetComponent<food>().suckedIn;
+        foodScript = true;
       }
     }
 
     public void OnTriggerExit2D(Collider2D collision){
-        if (collision.gameObject.tag == "food") 
-        {
-        collision.gameObject.food.suckedIn = false;
-        }
+      if (collision.gameObject.tag == "food")
+      {
+        bool foodScript = collision.gameObject.GetComponent<food>().suckedIn;
+        foodScript = true;
+      }
     }
 
     IEnumerator playSuctionSound()
