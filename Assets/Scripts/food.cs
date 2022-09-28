@@ -21,8 +21,7 @@ public class food : MonoBehaviour
         spriteFood = spriteFoodList[Random.Range(0, spriteFoodList.Length)];
         Debug.Log(spriteFood);
         spriteRenderer.sprite = spriteFood;
-        //   direction = new Vector2(Random.Range(-0.04f, 0.04f), Random.Range(-0.04f, 0.04f));
-        direction = new Vector2(Random.Range(-0.04f, 0), Random.Range(0, 0));
+        direction = new Vector2(Random.Range(-0.04f, 0.04f), Random.Range(-0.04f, 0.04f));
     }
 
     // Start is called before the first frame update
@@ -36,9 +35,21 @@ public class food : MonoBehaviour
     {
         transform.Translate(direction.x * speed, direction.y * speed, 0.0f);
         // if touch walls, bounce
-        if (transform.position.x >= gameManager.screenSize.x)
+        if (transform.position.x >= 8.5f)
         {
             direction.x *= -1;
+        }
+        if (transform.position.x <= -8.5f)
+        {
+            direction.x *= -1;
+        }
+        if (transform.position.y >= 4.5f)
+        {
+            direction.y *= -1;
+        }
+        if (transform.position.y <= -4.5f)
+        {
+            direction.y *= -1;
         }
 
     }
