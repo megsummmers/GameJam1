@@ -87,7 +87,6 @@ public class gameManager : MonoBehaviour
         {
             foodSpawnDone = false;
             StartCoroutine(FoodSpawnTimerCode());
-                Debug.Log("start");
         }
         //subtracts one every second
         playerHunger -= Time.deltaTime;

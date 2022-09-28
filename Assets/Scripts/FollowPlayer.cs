@@ -29,24 +29,9 @@ public class FollowPlayer : MonoBehaviour
         // if suck and has stamina, then any food in the area gets sucked towards the player
         if (Input.GetKey("space") && gameManager.playerStamina > 0){//move food
           gameManager.playerStamina -= Time.deltaTime * 20.0f;
-          if(audioPlay){
+          if(audioPlay && gameManager.playerStamina > 0){
             StartCoroutine(playSuctionSound());
           }
-          //switch(food_active)
-          //{
-          //  case "Chocolate": //desk
-          //  Chocolate.transform.position = Vector2.MoveTowards(Chocolate.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          //  break;
-          //  case "Donut": //boss
-          //  Donut.transform.position = Vector2.MoveTowards(Donut.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          //  break;
-          //  case "Energydrink": //water
-          //  Energydrink.transform.position = Vector2.MoveTowards(Energydrink.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          //  break;
-          //  case "Soda": //printer
-          //  Soda.transform.position = Vector2.MoveTowards(Soda.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-          //  break;
-          //}
         }
       }
 

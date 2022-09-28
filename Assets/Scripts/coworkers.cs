@@ -12,7 +12,6 @@ public class coworkers : MonoBehaviour
     void Start()
     {
       tag = gameObject.tag;
-      Debug.Log(tag);
       if(tag == "Horizontal"){
         minimum = transform.position.x - 0.1F;
         maximum = transform.position.x + 0.1F;
