@@ -19,9 +19,9 @@ public class food : MonoBehaviour
     {
         // set the sprite based on the random choice
         spriteFood = spriteFoodList[Random.Range(0, spriteFoodList.Length)];
-        Debug.Log(spriteFood);
+        transform.position = new Vector3(0, 0, 0);
         spriteRenderer.sprite = spriteFood;
-        direction = new Vector2(Random.Range(-0.04f, 0.04f), Random.Range(-0.04f, 0.04f));
+        direction = new Vector2(Random.Range(Random.Range(-0.04f, -0.02f), Random.Range(0.02f, 0.04f)), Random.Range(Random.Range(-0.04f, -0.02f), Random.Range(0.02f, 0.04f)));
     }
 
     // Start is called before the first frame update
@@ -56,7 +56,7 @@ public class food : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // if touch player destroy it
-        if (collision.gameObject.tag == "player")
+        if (collision.gameObject == player)
         {
             RemoveFood();
         }

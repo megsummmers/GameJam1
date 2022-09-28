@@ -14,11 +14,13 @@ public class gameManager : MonoBehaviour
     public GameObject reception;
     public GameObject couch;
     public GameObject foodSpawnArea;
+    public GameObject foodPrefab;
     public Camera mainCamera;
 
     private float speed = 3.0f;
     private float place_num;
     private bool gameOn = true;
+    private bool foodSpawnDone = true;
 
     // levels
     public static int currentLevel = 1;
@@ -40,10 +42,10 @@ public class gameManager : MonoBehaviour
     public static Vector2 screenSize;
 
     // arrays of game objects
-    public GameObject[] foodList;
-    public GameObject[] obstaclesList;
-    public GameObject[] locationsList;
-    public GameObject[] coworkersList;
+    //public GameObject[] foodList;
+    //public GameObject[] obstaclesList;
+    //public GameObject[] locationsList;
+    //public GameObject[] coworkersList;
 
     // UI elements
     public TMP_Text textHunger;
@@ -74,13 +76,19 @@ public class gameManager : MonoBehaviour
       playerHunger = playerHungerLimit;
       sliderStamina.maxValue = playerStaminaLimit;
       screenSize = mainCamera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        Debug.Log(screenSize);
     }
 
     // Fixed Update is called once per frame (better to use than Update)
     void FixedUpdate()
     {
       if(gameOn){
+        // if the food just spawned, start the timer again
+        if (foodSpawnDone == true)
+        {
+            foodSpawnDone = false;
+            StartCoroutine(FoodSpawnTimerCode());
+                Debug.Log("start");
+        }
         //subtracts one every second
         playerHunger -= Time.deltaTime;
         playerHungerDisplay = Mathf.RoundToInt(playerHunger);
@@ -163,10 +171,22 @@ public class gameManager : MonoBehaviour
       }
     }
 
+    IEnumerator FoodSpawnTimerCode()
+    {
+        foodSpawnTimer = foodSpawnFrequency;
+        while (foodSpawnTimer > 0)
+        {
+            yield return new WaitForSeconds(1.0f);
+            foodSpawnTimer--;
+        }
+        Instantiate(foodPrefab, foodSpawnArea.transform.position, Quaternion.identity);
+        foodSpawnDone = true;
+        Debug.Log("spawned");
+    }
+
     IEnumerator SwitchCoroutine()
     {
         //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine");
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(2);

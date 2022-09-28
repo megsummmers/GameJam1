@@ -5,16 +5,11 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
   public GameObject player;
-  public GameObject Chocolate;
-  public GameObject Donut;
-  public GameObject Energydrink;
-  public GameObject Soda;
-  public GameObject[] foodTouched;
+  public List<GameObject> foodTouched = new List<GameObject>();
 
   public AudioSource soundSuction;
 
   static public bool magnet = false;
-  private string food_active;
   static public bool audioPlay = true;
     // Start is called before the first frame update
 
@@ -37,33 +32,33 @@ public class FollowPlayer : MonoBehaviour
           if(audioPlay){
             StartCoroutine(playSuctionSound());
           }
-          switch(food_active)
-          {
-            case "Chocolate": //desk
-            Chocolate.transform.position = Vector2.MoveTowards(Chocolate.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-            break;
-            case "Donut": //boss
-            Donut.transform.position = Vector2.MoveTowards(Donut.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-            break;
-            case "Energydrink": //water
-            Energydrink.transform.position = Vector2.MoveTowards(Energydrink.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-            break;
-            case "Soda": //printer
-            Soda.transform.position = Vector2.MoveTowards(Soda.transform.position, player.transform.position, 2.5f * Time.deltaTime);
-            break;
-          }
+          //switch(food_active)
+          //{
+          //  case "Chocolate": //desk
+          //  Chocolate.transform.position = Vector2.MoveTowards(Chocolate.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+          //  break;
+          //  case "Donut": //boss
+          //  Donut.transform.position = Vector2.MoveTowards(Donut.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+          //  break;
+          //  case "Energydrink": //water
+          //  Energydrink.transform.position = Vector2.MoveTowards(Energydrink.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+          //  break;
+          //  case "Soda": //printer
+          //  Soda.transform.position = Vector2.MoveTowards(Soda.transform.position, player.transform.position, 2.5f * Time.deltaTime);
+          //  break;
+          //}
         }
       }
 
     public void OnTriggerEnter2D(Collider2D collision){
       //collision.transform.position = Vector2.MoveTowards(collision.transform.position, transform.position, 1.5f * Time.deltaTime);
       magnet = true;
-      food_active = collision.gameObject.name;
+     // food_active = collision.gameObject;
     }
 
     public void OnTriggerExit2D(Collider2D collision){
       magnet = false;
-      food_active = "";
+    //  food_active = "";
     }
 
     IEnumerator playSuctionSound()

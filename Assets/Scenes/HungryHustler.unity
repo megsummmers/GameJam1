@@ -307,11 +307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7164191990256645637, guid: 385aed242e2fe4b4bbaf1343d8ab42c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.77
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 7164191990256645637, guid: 385aed242e2fe4b4bbaf1343d8ab42c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 8428703760944344037, guid: 385aed242e2fe4b4bbaf1343d8ab42c7, type: 3}
       propertyPath: m_SortingLayer
@@ -2422,11 +2422,8 @@ MonoBehaviour:
   reception: {fileID: 959715726}
   couch: {fileID: 897615671}
   foodSpawnArea: {fileID: 1655962731}
+  foodPrefab: {fileID: 3954452234172439940, guid: 385aed242e2fe4b4bbaf1343d8ab42c7, type: 3}
   mainCamera: {fileID: 519420031}
-  foodList: []
-  obstaclesList: []
-  locationsList: []
-  coworkersList: []
   textHunger: {fileID: 802188265}
   textScore: {fileID: 1013433569}
   textLocation: {fileID: 1050261068}
