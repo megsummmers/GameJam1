@@ -181,7 +181,6 @@ public class gameManager : MonoBehaviour
         }
         Instantiate(foodPrefab, foodSpawnArea.transform.position, Quaternion.identity);
         foodSpawnDone = true;
-        Debug.Log("spawned");
     }
 
     IEnumerator SwitchCoroutine()

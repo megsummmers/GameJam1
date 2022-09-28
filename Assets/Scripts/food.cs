@@ -19,7 +19,7 @@ public class food : MonoBehaviour
     {
         // set the sprite based on the random choice
         spriteFood = spriteFoodList[Random.Range(0, spriteFoodList.Length)];
-        transform.position = new Vector3(0, 0, 0);
+     //   transform.position = new Vector3(0, 0, 0);
         spriteRenderer.sprite = spriteFood;
         direction = new Vector2(Random.Range(Random.Range(-0.04f, -0.02f), Random.Range(0.02f, 0.04f)), Random.Range(Random.Range(-0.04f, -0.02f), Random.Range(0.02f, 0.04f)));
     }
