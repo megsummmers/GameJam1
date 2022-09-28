@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Tutorial : MonoBehaviour
@@ -35,7 +36,7 @@ public class Tutorial : MonoBehaviour
           case 1:
             topTxt.text = "You are this little fellow, Jeffrey! You have a lot to do today so you have no time to stop and eat.";
             bottomTxt.text = "However your energy will go down as you work so grab a lot snacks to fill it up again!";
-            food.SetActive(true);
+            //food.SetActive(true);
             break;
           case 2:
             topTxt.text = "This is your pick up zone! As Jeffrey bounces around the screen, it will stay rotated towards your mouse";
@@ -55,6 +56,9 @@ public class Tutorial : MonoBehaviour
           case 5:
             topTxt.text = "Thats all you need to know to survive the work day! Good luck hard worker!";
             bottomTxt.text = "Click spacebar to start the game";
+            break;
+          case 6:
+            SceneManager.LoadScene("HungryHustler");
             break;
         }
     }

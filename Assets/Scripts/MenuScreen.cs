@@ -27,6 +27,13 @@ public class MenuScreen : MonoBehaviour
         SceneManager.LoadSceneAsync("Scenes/HungryHustler", LoadSceneMode.Single);
     }
 
+    public void playTutorial()
+    {
+      soundButtonClick.Play();
+      SceneManager.LoadSceneAsync("Scenes/Tutorial", LoadSceneMode.Single);
+
+    }
+
     public void hoverButton()
     {
         soundButtonHover.Play();
